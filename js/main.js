@@ -21,7 +21,7 @@ let vis = document.querySelector('#vis');
 let phase = document.querySelector('#phase');
 let pres = document.querySelector('#pres');
 
-console.log(inputValue);
+console.log( inputValue);
 
    button.addEventListener('click', function(){
     fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&units=imperial&appid=faa7157ed80b7221cc4c56247358bf18').then(response => response.json()).then(data => {
@@ -32,9 +32,10 @@ console.log(inputValue);
        let high = data['main']['temp_max'];
        let feels = data['main']['feels_like'];
        let desc2 = data['weather'][0]['description'];
-       let reveal = document.querySelector('.descContainer');
-
-       reveal.style.display = 'inline-block';
+       let pressure = data['main']['pressure'];
+       let humidity = data['main']['humidity'];
+       let windsped = data['wind']['speed'];
+      
 
        cityName.innerHTML = nameValue;
        mainTemp.innerHTML = theTemp + ' &deg F';
@@ -42,6 +43,9 @@ console.log(inputValue);
        loTemp.innerHTML = low + ' &deg F';
        flTemp.innerHTML = feels + ' &deg F';
        desc.innerHTML = desc2;
+       pres.innerHTML = pressure;
+       humid.innerHTML = humidity;
+       windSpd.innerHTML = windsped + ' mph';
        
     })
 
